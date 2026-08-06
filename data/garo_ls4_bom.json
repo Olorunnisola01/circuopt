@@ -1,0 +1,125 @@
+{
+ "source": {
+  "title": "Life Cycle Assessment of the charging station GARO LS4",
+  "authors": "Jonas Persson, Goran Erselius",
+  "organisation": "GARO AB with 2050 Consulting",
+  "date": "July 2021",
+  "url": "https://www.garo.se/storage/A79528C58638EAA0793A059DCD25F5DA6754DAAA0548152E3E0817C2EA109143/082fa5e2e77748c192d92bd360f7da9a/pdf/media/665c3f96136744c3b93299a97e4f18ac/LS4%20(EN)%20Life%20cycle%20assessment.pdf",
+  "local_copy": "data/garo_ls4_lca.pdf",
+  "method": "Climate impact assessed with an LCA methodology inspired by ISO 14025",
+  "background_data": "ICE v3.0, European EF database, Livsmedelsverket",
+  "note": "Publicly published manufacturer LCA. The material distribution below is read from the pie chart 'Material distribution in GARO LS4' on page 1 of the report; the mass totals, lifetime and emission results are quoted from the report text."
+ },
+ "product": {
+  "name": "GARO LS4 ground-mounted AC electric-vehicle charging station",
+  "official_product_mass_kg": 24.5,
+  "bom_mass_incl_packaging_kg": 29.7,
+  "technical_lifetime_years": 15,
+  "charging_sessions_over_life": 20000
+ },
+ "published_results": {
+  "total_kgco2e_per_unit": 600.0,
+  "raw_material_and_component_production_kgco2e": 314.2,
+  "raw_material_share_of_total": 0.52,
+  "kgco2e_per_kg_of_product": 20.0,
+  "note_material_hotspots": "Aluminium and electronic components each account for about 47% of the raw-material and component production emissions."
+ },
+ "material_distribution_pct_of_29_7kg": {
+  "Aluminium": 51.0,
+  "Electronic components": 15.0,
+  "Corrugated cardboard": 15.0,
+  "Copper/Plastic": 8.0,
+  "Steel": 6.0,
+  "Plastics": 5.0,
+  "Laminated paper": 0.5,
+  "Paper": 0.5,
+  "Rubber": 0.5
+ },
+ "packaging_categories": [
+  "Corrugated cardboard",
+  "Laminated paper",
+  "Paper"
+ ],
+ "published_emission_factors_gco2e_per_kg": {
+  "Copper": 840,
+  "High Density Polyethylene (HDPE)": 1930,
+  "Low Density Polyethylene (LDPE)": 2080,
+  "Iron": 2030,
+  "General plastic": 3310,
+  "Zinc": 4180,
+  "Aluminium": 13056,
+  "Aluminium_alt": 13187,
+  "Nickel": 12400,
+  "Tin": 5788,
+  "Lead": 3370,
+  "Polymers_6": 9140,
+  "Steel": 1727,
+  "Steel_alt": 577,
+  "Copper/plastic": 3560,
+  "Rubber": 2850,
+  "Paper": 320,
+  "_note": "Used only to cross-check the DEFRA-derived factors, never as model input."
+ },
+ "allocation_to_components": {
+  "_note": "The report publishes mass by MATERIAL, not by component. Splitting each material total across components is this project's assumption, constrained so that the per-family totals reproduce the published distribution exactly. Rubber (0.5%, gaskets and seals) is folded into the plastics family because neither DEFRA nor the design space resolves it separately.",
+  "aluminium": {
+   "aluminium door / front panel": 0.287,
+   "aluminium pedestal extrusion": 0.582,
+   "aluminium internal chassis and heat spreader": 0.131
+  },
+  "steel": {
+   "steel mounting base plate": 0.7,
+   "fasteners and small steel parts": 0.3
+  },
+  "electronics": {
+   "main contactor": 0.256,
+   "control and metering PCBA": 0.302,
+   "RCD / RCM module": 0.14,
+   "power and EMC board": 0.302
+  },
+  "plastic": {
+   "internal mouldings and covers": 0.53,
+   "connector housing": 0.35,
+   "gaskets and seals": 0.12
+  },
+  "cable": {
+   "cable copper conductor": 0.5,
+   "cable sheath": 0.5
+  }
+ },
+ "component_family_override": {
+  "_note": "The report's 'Copper/Plastic' category is the tethered charging cable. It is split into the model's copper and plastic families so that the recycled-content lever and the USGS copper price can act on the right parts; the combined mass still equals the published 8% category.",
+  "cable copper conductor": "copper",
+  "cable sheath": "plastic"
+ },
+ "component_interfaces": {
+  "_note": "Which joint interface each component sits behind: 0 = door/enclosure closure, 1 = internal chassis and module mounting, 2 = cable entry and gland, -1 = no modelled joint. This mapping is an ASSUMPTION.",
+  "aluminium door / front panel": 0,
+  "aluminium pedestal extrusion": 0,
+  "aluminium internal chassis and heat spreader": 1,
+  "main contactor": 1,
+  "control and metering PCBA": 1,
+  "RCD / RCM module": 1,
+  "power and EMC board": 1,
+  "cable copper conductor": 2,
+  "cable sheath": 2,
+  "steel mounting base plate": 1,
+  "fasteners and small steel parts": -1,
+  "internal mouldings and covers": 1,
+  "connector housing": 2,
+  "gaskets and seals": 0
+ },
+ "priority_repair_components": [
+  "main contactor",
+  "control and metering PCBA",
+  "RCD / RCM module",
+  "power and EMC board"
+ ],
+ "service_and_lifetime": {
+  "_source": "Same LCA report, 'Usage' section, page 5-6 (data/garo_ls4_lca.pdf).",
+  "technical_lifetime_years": 15,
+  "serviced_operating_lifetime_years": 25,
+  "service_description": "GARO states that with proper service an LS4 has an operating lifetime of about 25 years, against the 15-year technical lifetime used as the LCA's functional unit. The service GARO describes includes 10 km of transport per year and replacement of one residual current device (RCD); the report does not state how many discrete service interventions the 25-year figure assumes.",
+  "note": "Used in this project to anchor Assumptions.reman_life_extension: (25 - 15) / 15 = 0.667. The base ratio is cited to GARO's own report; mapping it onto exactly one modelled remanufacture cycle is this project's assumption, since the source does not specify the intervention count behind the 25-year figure. Provenance: CITED ratio, ASSUMED cycle count."
+ }
+}

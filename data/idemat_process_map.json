@@ -1,0 +1,154 @@
+{
+ "_about": "Which Idemat 2026 process stands for which material family in the CircuOpt model. This is a modelling choice, not a parsing detail, so each entry carries its justification. Codes are the Idemat identifier truncated to four groups; the fifth group is a release date and is deliberately not matched on.",
+ "_source": {
+  "dataset": "Idemat 2026 RevB1",
+  "author": "J.G. Vogtlander, Sustainability Impact Metrics / Delft University of Technology",
+  "url": "https://www.ecocostsvalue.com",
+  "licence": "Free to use with attribution, (c) Eco Cost Value / SSIM. Not redistributed with this repository.",
+  "sheet": "Idemat2026 midpoints"
+ },
+ "_geography": "European processes are used by default for grid electricity, matching GARO's Swedish manufacturing site (see 'grids' below). Material PRODUCTION processes are decided per family on the evidence available, not by a blanket European default: aluminium defaults to the GLOBAL average route because GARO's own supplier transport data shows an internationally distributed material supply chain and no source names a specific smelter for the aluminium; see families.aluminium.virgin. The European aluminium route is retained as families.aluminium.virgin_european for comparison.",
+ "families": {
+  "aluminium": {
+   "virgin": {
+    "code": "A.100.24.099",
+    "expect_unit": "kg",
+    "note": "Aluminium (primary), global average. Chosen as the default over the European route on evidence, not on fit: GARO's own LCA report lists supplier transport routes spanning Poland, Germany, Czech Republic, Italy, Turkey, China, Denmark and Slovenia -- a genuinely international supplier base, not a predominantly Nordic one -- and no source (the LCA report, GARO's 2025 sustainability report, or GARO's public materials) names a specific smelter, grid, or bauxite origin for the aluminium itself. Absent that evidence, assuming clean Nordic/European primary smelting is the less defensible default, not the more defensible one. This also happens to sit closer to the published study's own aluminium factor than the European route would -- see model.py:validate_against_published -- but that agreement is a consequence of the evidence-based choice, not the reason for making it."
+   },
+   "secondary": {
+    "code": "A.100.24.102",
+    "expect_unit": "kg",
+    "note": "Aluminium (secondary). The recycled-content lever now moves between two real production processes rather than between two reporting factors."
+   },
+   "recycling_credit": {
+    "code": "F.110.01.101",
+    "expect_unit": "kg",
+    "note": "Closed-loop recycling credit, negative by construction. Used only under the substitution allocation convention."
+   },
+   "forming": {
+    "code": "D.100.01.121",
+    "expect_unit": "kg",
+    "note": "Rolling aluminium sheet, as a stand-in for enclosure and pedestal forming."
+   },
+   "virgin_european": {
+    "code": "A.100.24.101",
+    "expect_unit": "kg",
+    "note": "Aluminium (primary), European production. Kept as a labelled comparison point, not the default, precisely because it is the reading a reviewer would expect from the factory's Swedish location and would be wrong to assume without supplier evidence. Used in the validation reconciliation to show how much of the model's result depends on this one choice."
+   }
+  },
+  "steel": {
+   "virgin": {
+    "code": "A.100.02.102",
+    "expect_unit": "kg",
+    "note": "Steel virgin + 15% scrap BOF, beams and sheet. The BOF route is the virgin end of the recycled-content lever."
+   },
+   "secondary": {
+    "code": "A.100.02.103",
+    "expect_unit": "kg",
+    "note": "Steel from 100% scrap EAF. The EAF route is the fully secondary end."
+   },
+   "recycling_credit": {
+    "code": "F.110.01.111",
+    "expect_unit": "kg",
+    "note": "Steel closed-loop recycling credit."
+   }
+  },
+  "copper": {
+   "virgin": {
+    "code": "A.100.24.108",
+    "expect_unit": "kg",
+    "note": "Copper rod/tube/plate (primary). The charging cable conductor."
+   },
+   "secondary": {
+    "code": "A.100.24.109",
+    "expect_unit": "kg",
+    "note": "Copper (secondary)."
+   },
+   "recycling_credit": {
+    "code": "F.110.01.102",
+    "expect_unit": "kg",
+    "note": "Copper closed-loop recycling credit."
+   }
+  },
+  "plastic": {
+   "virgin": {
+    "code": "A.130.07.101",
+    "expect_unit": "kg",
+    "note": "ABS. The published study reports a generic 'Plastics' category; ABS is the closest engineering polymer Idemat resolves and is the usual choice for this enclosure class. PC/ABS blends would sit between this and A.130.07.109 (PC)."
+   },
+   "secondary": {
+    "code": "A.130.03.091",
+    "expect_unit": "kg",
+    "note": "rABS, mechanically recycled. Mechanical rather than chemical recycling, which is what a housing recyclate stream realistically is."
+   },
+   "recycling_credit": {
+    "code": "F.120.01.101",
+    "expect_unit": "kg",
+    "note": "ABS closed-loop upcycling credit."
+   },
+   "incineration": {
+    "code": "F.090.01.101",
+    "expect_unit": "kg",
+    "note": "ABS waste incineration with electricity recovery. Carries the energy-recovery credit in its CED term, which is why CED goes negative here."
+   }
+  },
+  "electronics": {
+   "virgin": {
+    "code": "SYN.ELECTRONICS.WHITEGOODS.AVG",
+    "expect_unit": "kg",
+    "note": "Not a single Idemat database entry: no process represents a charging-station metering/RCD board, so this is the arithmetic mean of the two closest available analogues, both mains-voltage white-goods control boards -- A.050.06.304 (PCB of refrigerator) and A.050.06.305 (PCB of washing machine), constructed by circuopt.idemat.average_process(). Averaging across the available evidence rather than pinning one arbitrarily follows the same logic as the aluminium process choice. Both source processes explicitly exclude integrated circuits (ICs), which the underlying Idemat category names state directly -- a real limitation of this proxy that the averaging does not resolve, and which is why this remains the weakest mapping in the model and the family perturbed hardest in the scenario ensemble."
+   },
+   "_no_secondary": "Idemat offers no secondary route for a populated board, and recycled content is not a design lever for a PCBA, so the electronics family has no recycled-content variable."
+  },
+  "waste": {
+   "landfill_inert": {
+    "code": "F.130.01.106",
+    "expect_unit": "kg",
+    "note": "Landfill, inert waste. Zero across all indicators in Idemat, which is itself a modelling limitation worth stating rather than hiding: it means landfill is penalised only through the loss of the recycling credit, not through a burden of its own."
+   },
+   "scrap_collection_metal": {
+    "code": "F.130.03.104",
+    "expect_unit": "kg",
+    "note": "Scrap collection and sorting (copper), used as the generic separate-collection burden for all recovered streams."
+   },
+   "metals_open_loop_credit": {
+    "code": "F.110.01.100",
+    "expect_unit": "kg",
+    "note": "Metals open-loop recycling credit. Zero in Idemat by convention: downcycled metal earns no credit."
+   },
+   "plastics_open_loop_credit": {
+    "code": "F.120.01.100",
+    "expect_unit": "kg",
+    "note": "Plastics open-loop recycling credit. Also zero by convention."
+   }
+  }
+ },
+ "grids": {
+  "_note": "Electricity CONSUMPTION mixes, per MJ. Consumption rather than production, so imports are included, which is the correct basis for a use-phase model. Convert to per kWh by multiplying by 3.6.",
+  "_base": "Sweden",
+  "Sweden": {
+   "code": "B.042.02.129",
+   "expect_unit": "MJ"
+  },
+  "EU-27": {
+   "code": "B.042.02.101",
+   "expect_unit": "MJ"
+  },
+  "France": {
+   "code": "B.042.02.111",
+   "expect_unit": "MJ"
+  },
+  "Germany": {
+   "code": "B.042.02.112",
+   "expect_unit": "MJ"
+  },
+  "Netherlands": {
+   "code": "B.042.02.121",
+   "expect_unit": "MJ"
+  },
+  "Poland": {
+   "code": "B.042.02.123",
+   "expect_unit": "MJ"
+  }
+ }
+}
