@@ -43,9 +43,9 @@ that circularity pays. This report builds a framework that decides the
 question quantitatively for one product: the GARO LS4 ground-mounted AC
 electric-vehicle charging station, whose bill of materials, mass and service
 life are taken from a published manufacturer LCA rather than assumed.
-Fourteen design variables --- recycled
+Fourteen design variables (recycled
 content, joining method, design life, number of remanufacture cycles,
-end-of-life route per material family and standby power class --- are
+end-of-life route per material family and standby power class) are
 optimised simultaneously against three objectives: cradle-to-grave carbon per
 service-year (\emph{Planet}), annualised life-cycle cost (\emph{Prosperity}),
 and a composite repairability, modularity, circular-labour and supply-risk
@@ -66,7 +66,7 @@ right, not smoothed over. A
 self-contained NSGA-III recovers a 359-design Pareto
 archive, of which 359
 designs beat a linear take-make-waste baseline on carbon \emph{and} cost at
-the same time --- the central claim, and the one industry disputes. A
+the same time: the central claim, and the one industry disputes. A
 Monte-Carlo ensemble of 500 futures, spanning grid
 decarbonisation, carbon pricing, commodity volatility observed in the USGS
 series, remanufacturing performance and an ESPR-style minimum recycled-content
@@ -94,8 +94,8 @@ from voluntary to mandatory [11], and the Digital Product Passport it
 introduces will make the underlying data auditable at end of life in a way
 existing WEEE take-back schemes were not designed for [27]. The barrier is no
 longer intent. It is
-that deep circularity --- designing for disassembly, remanufacturing,
-high-purity recycling --- demands capital up front against benefits that are
+that deep circularity (designing for disassembly, remanufacturing,
+high-purity recycling) demands capital up front against benefits that are
 distributed across a decade, split between actors, and exposed to commodity
 and regulatory volatility. A product manager asked to approve a snap-fit
 tooling premium today, for a scrap revenue in 2038, has no rigorous way to
@@ -153,7 +153,7 @@ decided per family on the evidence available rather than by a blanket rule:
 grid electricity uses the European (Swedish) region, matching the factory's
 location, which is the one geographic fact this study is actually sure of.
 Material \emph{production} routes are not assumed to follow the factory
-location by default --- aluminium in particular defaults to the
+location by default: aluminium in particular defaults to the
 \emph{global-average} primary route, because GARO's own published transport
 data shows an internationally distributed supplier base and no source names a
 specific smelter. Section~\ref{sec:validation} and the geography
@@ -164,14 +164,14 @@ reconciliation in Section~9 set out the evidence and test the alternative.
 independent backend rather than discarded. It is a corporate GHG-reporting
 dataset, not a life-cycle inventory: single-issue, built on consumer waste
 categories, and carrying no avoided-burden credit at end of life. Keeping it
-selectable means the two can be compared --- which is how the earlier version
+selectable means the two can be compared, which is how the earlier version
 of this study, built on DEFRA alone, can be shown to have been carbon
 footprinting rather than LCA.
 
 \paragraph{USGS Mineral Commodity Summaries 2025} salient-statistics data
 releases (US Geological Survey; a work of the US Government, public domain).
-These supply annual average commodity prices for the life-cycle costing, and
---- more usefully --- a five-year price history per commodity. That history
+These supply annual average commodity prices for the life-cycle costing, and,
+more usefully, a five-year price history per commodity. That history
 is put to two uses: it calibrates the price shocks in the scenario ensemble,
 and its coefficient of variation is used as an observable proxy for supply
 risk in the People objective, so the social weighting of recycled content is
@@ -229,7 +229,7 @@ the same numbers with false confidence.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_datasets.png}
-\caption{Left: the recycled-content lever, straight from DEFRA 2025 --- the gap
+\caption{Left: the recycled-content lever, straight from DEFRA 2025: the gap
 between the two bars is the entire environmental case for secondary material.
 Right: USGS price histories, indexed to 2020. The dispersion on the right is
 why a single-point-in-time optimisation is not a decision aid.}
@@ -248,7 +248,7 @@ published}. Persson and Erselius [1] report, for this exact unit,
 the material distribution by mass, the \SI{24.5}{\kilo\gram} product mass,
 the \SI{29.7}{\kilo\gram} mass including packaging, a 15-year technical
 life and 20\,000 charging sessions over that life. The mass basis of every
-number in this report is therefore citable rather than invented --- which
+number in this report is therefore citable rather than invented, which
 matters, because a life-cycle model is only ever as defensible as the
 inventory it multiplies.
 
@@ -256,7 +256,7 @@ Two things remain this project's own. Packaging (corrugated cardboard,
 laminated paper and paper, 16\,\% of the published bill of materials)
 is excluded and the remainder renormalised onto the official product mass.
 And the report publishes mass by \emph{material}, not by component, so the
-split of each material total across components is an assumption --- declared
+split of each material total across components is an assumption, declared
 in \texttt{data/garo\_ls4\_bom.json} and constrained so that the family
 totals reproduce the published percentages exactly. The regression suite
 fails if that constraint is ever broken.
@@ -364,11 +364,11 @@ spirit of EN 45554 and the French repairability index; $s_{\text{modular}}$ is
 the share of reversible joints; $s_{\text{labour}}$ counts remanufacturing
 hours created per service-year, the circular-economy employment channel; and
 $s_{\text{supply}}$ credits recycled content in proportion to the USGS-derived
-volatility of the commodity displaced --- aluminium's inclusion on the EU's
+volatility of the commodity displaced: aluminium's inclusion on the EU's
 critical raw materials list, driven by import dependence on bauxite and a low
 domestic self-sufficiency ratio, is exactly the kind of exposure this term is
 meant to price in [28]. The weights are a stated preference,
-not a finding --- and the scenario ensemble re-draws preference weights from a
+not a finding, and the scenario ensemble re-draws preference weights from a
 Dirichlet precisely so that no conclusion depends on them.
 
 \paragraph{Recyclate is not a free substitute.} An early version of this
@@ -378,8 +378,7 @@ secondary-metal price both reward recycled content without limit, so the
 variable pinned to its bound and carried no information. Two penalty terms,
 both declared assumptions, restore the trade-off that exists in practice.
 Above a threshold $r_0 = 0.40$, secondary feedstock attracts a quadratic
-quality surcharge --- tighter sorting, compatibilisers, property compensation
----
+quality surcharge (tighter sorting, compatibilisers, property compensation):
 \begin{equation}
 \kappa(r) = 1 + \lambda \left(\frac{\max(0, r - r_0)}{1 - r_0}\right)^2,
 \qquad \lambda = 0.60,
@@ -483,7 +482,7 @@ which is \SI{41.34}{\kilo\gram}
 CO$_2$e per service-year at a cost of
 163.91~USD per service-year, a
 People index of 0.210 and a Material Circularity
-Indicator of 0.00 --- zero, correctly,
+Indicator of 0.00, zero, correctly,
 for a design that is neither made of nor destined for recovered material.
 
 Materials contribute
@@ -497,7 +496,7 @@ cycle rather than by anything chosen here. At the published
 20\,000 sessions over 15 years, the station moves
 \SI{33,333}{\kilo\watt\hour} per year, so conversion losses account
 for \SI{333}{\kilo\watt\hour} annually against
-\SI{8.8}{\kilo\watt\hour} of standby --- standby is 2.6\,\% of
+\SI{8.8}{\kilo\watt\hour} of standby: standby is 2.6\,\% of
 the use phase, not the lever it would be on a domestic wallbox sitting idle.
 Conversion efficiency is where the carbon is, and the optimiser finds this
 without being told.
@@ -518,7 +517,7 @@ quietly omitted.
 
 Applied to the cradle-to-gate material stage, this model returns
 \SI{208}{\kilo\gram} CO$_2$e against the published
-\SI{314}{\kilo\gram} CO$_2$e --- a discrepancy of 34\,\%, with
+\SI{314}{\kilo\gram} CO$_2$e: a discrepancy of 34\,\%, with
 this model the lower of the two. Section~9 traces essentially all of that gap
 to one factor: aluminium, which is over half the product's mass by
 citation, and where the two inventories' underlying process assumptions
@@ -546,7 +545,7 @@ The more informative result is structural. The published study reports that
 aluminium and electronic components each account for roughly 47\,\% of
 material-stage emissions. This model, told nothing of that, returns
 82\,\% and 10\,\%. It recovers the hotspot structure of the
-product unprompted --- which is the property that actually matters here,
+product unprompted, which is the property that actually matters here,
 because every design comparison in this report is a comparison of where those
 hotspots move.
 
@@ -602,14 +601,14 @@ comparable to
 the sampling error of the estimator itself: the front is stable, not a lucky
 draw. Equal-budget random search reaches 93.2\% of the same
 hypervolume. That gap is the honest measure of what the algorithm contributes,
-and it is worth reading in both directions --- the problem is not so rugged
+and it is worth reading in both directions: the problem is not so rugged
 that search is the hard part; the hard part is the model and the data.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_front.png}
 \caption{The Pareto archive in its three pairwise projections; the red cross is
-the linear baseline. It sits outside the front on every projection --- the
+the linear baseline. It sits outside the front on every projection: the
 baseline is not a trade-off, it is simply dominated.}
 \end{figure}
 
@@ -670,13 +669,13 @@ revenue recovered at end of life.}
 Across 500 futures and
 24 preference draws each,
 55 of 359 designs clear
-twice the chance rate --- a design drawn at random would be a top-decile
+twice the chance rate (a design drawn at random would be a top-decile
 answer in 10\% of draws, so
-20\% is the bar --- and 0
+20\% is the bar), and 0
 are never a top-decile answer at all.
 The most robust design, \#160, holds top-decile status in
 45\% of draws while remaining feasible in
-100\% of futures --- including those imposing an ESPR
+100\% of futures, including those imposing an ESPR
 recycled-content mandate.
 
 The mechanism behind robustness is worth naming, because it is a design
@@ -691,7 +690,7 @@ is optionality.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_robustness.png}
-\caption{Left: the nominal front coloured by robustness --- note that the
+\caption{Left: the nominal front coloured by robustness: note that the
 cheapest nominal designs are not the most robust. Right: 5th--95th percentile
 spread of the Planet objective across futures, which is dominated by grid
 decarbonisation and charging-throughput uncertainty.}
@@ -718,7 +717,7 @@ regulator-facing & 0.55/0.20/0.25 & \#346 & 69\% & 39 & 1.00/1.00/1.00 & 15 & 0 
 \end{table}
 
 Four profiles produce 3 distinct recommendations from one
-front. No profile's choice wins in every future --- the shares in the table
+front. No profile's choice wins in every future: the shares in the table
 are the honest answer to ``what should we build?'', and their distance from
 100\% is the residual uncertainty a committee, not an optimiser, has to
 absorb.
@@ -769,7 +768,7 @@ have been.
 
 ISO 14044 requires the allocation convention to be declared and its influence
 examined. Under \emph{cut-off}, recovered material earns nothing and
-end-of-life is 0.32\,\% of total carbon --- a rounding error, which
+end-of-life is 0.32\,\% of total carbon, a rounding error, which
 makes the end-of-life decision variable environmentally inert. Under
 \emph{substitution} it earns the virgin production it displaces and rises to
 14.9\,\% of the total, shifting the mean Planet objective by
@@ -781,8 +780,8 @@ the best design. \textbf{The allocation convention, not the design space,
 selects the winner.} Any result in this report that concerns end-of-life route
 is conditional on the convention stated with it. This is the single most
 important methodological caveat in the study, and it is why the earlier
-carbon-reporting-factor version of this model --- which had no substitution
-option at all --- could not have been trusted on circularity questions.
+carbon-reporting-factor version of this model (which had no substitution
+option at all) could not have been trusted on circularity questions.
 
 Rather than stop at two independently invented conventions, a third is
 implemented: the material term of the European Commission's own \emph{Circular
@@ -841,7 +840,7 @@ Poland & 0.6363 & 219.6 & +0.987 \\
 \end{table}
 
 The absolute result spans 12$\times$ between the cleanest and dirtiest
-European grid --- larger than the effect of every design variable combined. But
+European grid: larger than the effect of every design variable combined. But
 rank correlation across the archive stays above $+0.99$ everywhere. So the
 level of the answer is a statement about the grid, while the \emph{ranking} of
 designs is not. A designer can use this front anywhere in Europe; a
@@ -849,7 +848,7 @@ communications department quoting the absolute number cannot.
 
 \subsection{The recyclate constants: a finding with its conditionality attached}
 
-Three constants govern the cost penalty on recycled content --- a quality
+Three constants govern the cost penalty on recycled content: a quality
 threshold, a quadratic surcharge and a reject rate. \textbf{None has an
 empirical source.} They matter because they produce the interior cost optimum
 in recycled content, i.e.\ the result that recycled content is not simply
@@ -871,7 +870,7 @@ The four social sub-weights were chosen, not elicited. Redrawing them
 in 100\,\% of draws, with 1 distinct winners overall, and
 rank correlation against the nominal weighting averages $\rho=+0.940$
 (5th percentile $+0.782$). The social ranking is therefore mostly a property
-of the designs rather than of the weighting --- but the 1 distinct
+of the designs rather than of the weighting, but the 1 distinct
 winners are a reminder that this index is a transparent decision aid, not a
 measurement.
 
@@ -1062,7 +1061,7 @@ The attribution is a supply-chain geography choice, and it was made the right
 way round: on evidence, before checking the fit, not after. Idemat resolves
 both a global-average primary aluminium route and a European one. GARO's own
 LCA report names no smelter, grid, or bauxite origin for the aluminium in the
-LS4 --- but its own supplier transport-distance table lists routes to Gnosjö
+LS4, but its own supplier transport-distance table lists routes to Gnosjö
 from Poland, Germany, the Czech Republic, Italy, Turkey, China, Denmark and
 Slovenia, describing a genuinely international supplier base, not a
 predominantly Nordic one. On that evidence this report defaults to the
@@ -1073,7 +1072,7 @@ nuclear-heavy smelting) only as a labelled comparison.
 That choice happens to move the model closer to the published study's own
 factor (\SI{13.06}{\kilo\gram} CO$_2$e/kg): the default gives a
 cradle-to-gate ratio of 0.66 against the published figure, where
-substituting the European alternative would give 0.34 --- \emph{further}
+substituting the European alternative would give 0.34, \emph{further}
 from the published result, not closer. That agreement is worth stating plainly
 as a consequence, not a justification: the route was chosen on the transport
 evidence first, and only checked against the published figure afterwards. Had
@@ -1084,7 +1083,7 @@ Neither study is wrong on this point; they simply required different evidence
 to resolve, and only one source (GARO's own transport data) actually bears on
 which is closer to this product's real supply chain. For a product that is
 60\,\% aluminium by mass, that one declared, evidenced choice is
-worth more than every circular design decision in this report combined ---
+worth more than every circular design decision in this report combined,
 which is itself the most useful thing the validation exercise produced.
 
 What remains of the gap after that reconciliation (0.66 of the
@@ -1130,8 +1129,8 @@ on grounds this model cannot supply.
 \item \textbf{The material masses are cited; their allocation to components
 is not.} The published study gives mass by material, not by part. Anything
 depending only on how much aluminium or electronics the product contains is on
-cited ground; anything depending on \emph{which part} the aluminium is in ---
-disassembly sequence above all --- rests on this project's allocation. The
+cited ground; anything depending on \emph{which part} the aluminium is in
+(disassembly sequence above all) rests on this project's allocation. The
 repairability term is the most exposed.
 \item \textbf{The recyclate constants are unmeasured, and they set the
 optimum's location.} The interior optimum exists across most of the parameter
@@ -1158,9 +1157,9 @@ values, not distributions. The proxy multipliers in the ensemble are a stand-in
 for inventory uncertainty, not a propagation of it. A study with access to
 ecoinvent's uncertainty information could do this properly.
 \item \textbf{Prices are world-market, impacts are European.} USGS and World
-Bank both quote globally traded metals, which is defensible for commodities ---
-Section 8.2 shows the two sources agree to within +0.15\,\% on
-archive cost and pick the same best design --- but this leaves polymer and
+Bank both quote globally traded metals, which is defensible for commodities
+(Section 8.2 shows the two sources agree to within +0.15\,\% on
+archive cost and pick the same best design), but this leaves polymer and
 labour prices as assumptions rather than data, and steel has no comparable
 World Bank series to cross-check against at all.
 \item \textbf{The CFF's disposal formula is not implemented.} Only the
@@ -1176,8 +1175,8 @@ reconciling the aluminium route is sized against the published range of
 inter-database LCA discrepancies rather than closed further by tuning.
 \end{itemize}
 
-The central finding --- that carbon-and-cost win-win designs exist and can be
-found systematically --- is a statement about the \emph{structure} of the
+The central finding (that carbon-and-cost win-win designs exist and can be
+found systematically) is a statement about the \emph{structure} of the
 trade-off, and it survives every perturbation tested: all four impact
 categories, three allocation conventions including the EU's own CFF, six
 European grids, two independent price sources, an order-of-magnitude range in
@@ -1268,8 +1267,8 @@ Delft University of Technology, \texttt{ecocostsvalue.com}. Free to use with
 attribution; not redistributed with this repository.
 \item European Commission, \emph{Environmental Footprint (EF) 3.1 reference
 package}, Joint Research Centre.
-\item ISO 14044:2006, \emph{Environmental management --- Life cycle assessment
---- Requirements and guidelines}, clause 4.3.4 on allocation.
+\item ISO 14044:2006, \emph{Environmental management: Life cycle assessment,
+requirements and guidelines}, clause 4.3.4 on allocation.
 \item H.B. Mann and D.R. Whitney, ``On a test of whether one of two random
 variables is stochastically larger than the other,'' \emph{Annals of
 Mathematical Statistics}, 18(1), 50--60, 1947.
@@ -1285,7 +1284,7 @@ Computation}, 6(2), 182--197, 2002.
 optimization,'' in \emph{Multiple Criteria Decision Making Theory and
 Application}, Springer, 1980.
 \item Ellen MacArthur Foundation and Granta Design, \emph{Circularity
-Indicators: An Approach to Measuring Circularity --- Methodology}, 2015. The
+Indicators: An Approach to Measuring Circularity, Methodology}, 2015. The
 MCI in this report follows this formulation, including $F(X)=0.9/X$.
 \item Regulation (EU) 2024/1781 establishing a framework for the setting of
 ecodesign requirements for sustainable products (ESPR).
@@ -1323,8 +1322,8 @@ Handling Constraints and Extending to an Adaptive Approach,'' \emph{IEEE
 Trans. Evolutionary Computation}, 18(4), 602--622, 2014. Extends NSGA-III to
 constrained problems, which is the form implemented here.
 \item E. Zitzler and L. Thiele, ``Multiobjective Optimization Using
-Evolutionary Algorithms --- A Comparative Case Study,'' in \emph{Parallel
-Problem Solving from Nature --- PPSN V}, Springer, 292--301, 1998.
+Evolutionary Algorithms: A Comparative Case Study,'' in \emph{Parallel
+Problem Solving from Nature: PPSN V}, Springer, 292--301, 1998.
 Introduces the hypervolume indicator used throughout Section~8 to compare
 NSGA-III, NSGA-II and random search.
 \item J. Derrac, S. Garc\'ia, D. Molina, F. Herrera, ``A Practical Tutorial
@@ -1350,8 +1349,8 @@ constraint.
 ``Advancing Circularity Metrics: Revisiting the Ellen MacArthur Foundation's
 Material Circularity Indicator,'' \emph{Resources, Conservation and
 Recycling}, 226, 108682, 2025. Documents specific methodological weaknesses
-in the MCI formula this report also implements --- most relevantly its
-single-cycle view and its treatment of the 50:50 waste-allocation split ---
+in the MCI formula this report also implements (most relevantly its
+single-cycle view and its treatment of the 50:50 waste-allocation split),
 and is why the MCI values reported here are labelled against the published
 formula rather than presented as a fully resolved circularity measure.
 \item United Nations Environment Programme, \emph{Guidelines for Social Life
@@ -1367,8 +1366,8 @@ List of Critical Raw Materials}, 2023. Aluminium's dependence on imported
 bauxite and the EU's low self-sufficiency ratio are part of the case for
 using commodity-price volatility as an observable proxy for the
 supply-risk term in the People index.
-\item EN 15804:2012+A2:2019, \emph{Sustainability of construction works ---
-Environmental product declarations --- Core rules for the product category
+\item EN 15804:2012+A2:2019, \emph{Sustainability of construction works:
+environmental product declarations, core rules for the product category
 of construction products}, CEN, 2019. The closest existing standardised
 reporting format to what a Digital Product Passport under ESPR is expected
 to require; cited for context, not applied directly, since the GARO LS4 is
