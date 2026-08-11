@@ -38,44 +38,44 @@ ecodesign, built end to end on open data}}
 
 \begin{abstract}
 \noindent
-Circular ecodesign stalls at the concept stage because designers cannot show
-that circularity will eventually yield profit. This report builds a framework that decides the
-question quantitatively for one product: the GARO LS4 ground-mounted AC
-electric-vehicle charging station, whose bill of materials, mass and service
-life are taken from a published manufacturer LCA rather than assumed.
-Fourteen design variables (recycled
-content, joining method, design life, number of remanufacture cycles,
-end-of-life route per material family and standby power class) are
-optimised simultaneously against three objectives: cradle-to-grave carbon per
-service-year (\emph{Planet}), annualised life-cycle cost (\emph{Prosperity}),
-and a composite repairability, modularity, circular-labour and supply-risk
-index (\emph{People}). The life-cycle inventory is read at run time from the
-Idemat 2026, a process-level inventory carrying global warming, cumulative
-energy demand and the European Commission's Environmental Footprint 3.1
-method; commodity prices come from the USGS Mineral Commodity Summaries 2025
-(US public domain). No licensed database is used and no factor is invented.
-Every methodological choice that could decide the answer is tested rather than
-assumed: impact category, end-of-life allocation convention (including the EU
-Product Environmental Footprint's own Circular Footprint Formula), grid
-geography, social weighting, price source, the electronics proxy, the three
-unmeasured recyclate constants, and the widths of the scenario distributions.
-One of those tests overturns a comfortable assumption: purely methodological
-choices routinely move the Planet objective more than the entire Pareto
-archive of design decisions does, which is reported as a finding in its own
-right, not smoothed over. A
-self-contained NSGA-III recovers a 359-design Pareto
-archive, of which 359
-designs beat a linear take-make-waste baseline on carbon \emph{and} cost at
-the same time: the central claim, and the one industry disputes. A
-Monte-Carlo ensemble of 500 futures, spanning grid
-decarbonisation, carbon pricing, commodity volatility observed in the USGS
-series, remanufacturing performance and an ESPR-style minimum recycled-content
-mandate, then separates designs that are merely optimal today from designs
-that stay good answers under uncertainty. 55 of
-359 designs survive that test. Reading the same front
-through four decision-maker preference profiles produces
-3 distinct recommendations, which is the practical
-content of the exercise: the front is one artefact, the decision is not.
+Circular ecodesign is often constrained by limited quantitative evidence that
+circular design strategies can deliver both environmental and economic
+benefits. This study develops and applies a three-objective optimisation
+framework based entirely on publicly available data, using the GARO LS4
+ground-mounted AC electric-vehicle charging station as a case study. Product
+mass, bill of materials, charging throughput, and service-life data were
+obtained from a published manufacturer life-cycle assessment. Fourteen design
+variables were optimised across three objectives: cradle-to-grave carbon
+emissions per service-year (\emph{Planet}), annualised life-cycle cost
+(\emph{Prosperity}), and a composite index incorporating repairability,
+modularity, circular employment, and supply risk (\emph{People}).
+
+The framework integrates process-level environmental data from Idemat 2026
+and commodity prices from the USGS Mineral Commodity Summaries 2025, while
+explicitly identifying proxies and assumptions where publicly available
+empirical data were unavailable. NSGA-III was used to generate a Pareto
+archive of 359 non-dominated designs. All 359 designs outperformed a linear
+take-make-waste baseline in both carbon emissions and cost. The
+best-performing solutions reduced carbon emissions per service-year by up to
+62.6\,\% and costs by up to 22.7\,\%.
+
+Robustness was evaluated using 500 Monte Carlo scenarios representing
+uncertainty in grid decarbonisation, carbon pricing, commodity prices,
+remanufacturing performance, and prospective recycled-content requirements.
+Of the 359 Pareto-optimal designs, 55 remained robust across the simulated
+futures. Sensitivity analyses examined the effects of impact category,
+end-of-life allocation, grid geography, social weighting, price source,
+electronics modelling, recyclate assumptions, and uncertainty-distribution
+widths. The results showed that methodological choices, particularly grid
+geography and inventory selection, could influence the Planet objective more
+strongly than variation among the Pareto-optimal designs themselves.
+
+Finally, applying four stakeholder preference profiles to the same Pareto
+front produced three distinct design recommendations, demonstrating that
+optimisation identifies feasible trade-offs rather than a universally optimal
+solution. The framework provides a transparent and reproducible approach for
+distinguishing circular designs that perform well under current assumptions
+from those that remain effective under uncertainty.
 \end{abstract}
 
 \section{Why this problem}
