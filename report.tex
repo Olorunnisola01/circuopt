@@ -142,7 +142,8 @@ redistributed.
 
 \paragraph{Idemat 2026} (Vogtlander, Sustainability Impact Metrics / Delft
 University of Technology) is the life-cycle inventory. It is process-level,
-which matters for two reasons beyond the obvious one.
+which matters for two reasons beyond the general benefit of a more detailed
+inventory.
 
 First, it carries a full impact-assessment layer, so the same calculation
 yields global warming, cumulative energy demand, the European Commission's
@@ -164,7 +165,7 @@ not a parsing detail, so it lives in
 resolver that fails loudly if a code moves between releases. Process choice is
 decided per family on the evidence available rather than by a blanket rule:
 grid electricity uses the European (Swedish) region, matching the factory's
-location, which is the one geographic fact this study is actually sure of.
+location, which is the one geographic assumption grounded in direct evidence.
 Material \emph{production} routes are not assumed to follow the factory
 location by default: aluminium in particular defaults to the
 \emph{global-average} primary route, because GARO's own published transport
@@ -236,8 +237,8 @@ polymer price index, so the PC/ABS resin price is an assumption. Second, the
 USGS aluminium release was not retrievable during this run, so its price falls back to a declared assumption.
 Third, DEFRA does not resolve copper or populated electronics as materials;
 both use proxies, which is why they carry the widest uncertainty
-($\sigma=0.35$ lognormal) in the ensemble. A model that hid these would report
-the same numbers with false confidence.
+($\sigma=0.35$ lognormal) in the ensemble. Omitting this classification would
+present these values with an unwarranted appearance of certainty.
 
 \begin{figure}[t]
 \centering
@@ -275,7 +276,8 @@ number in this report is therefore citable rather than invented, which
 matters, because a life-cycle model is only ever as defensible as the
 inventory it multiplies.
 
-Two things remain this project's own. Packaging (corrugated cardboard,
+Two aspects of the mass allocation are this project's own assumptions rather
+than part of the cited source. Packaging (corrugated cardboard,
 laminated paper and paper, 16\,\% of the published bill of materials)
 is excluded and the remainder renormalised onto the official product mass.
 And the report publishes mass by \emph{material}, not by component, so the
@@ -356,9 +358,10 @@ f_1 &= \frac{E_{\text{mat}} + E_{\text{mfg}} + E_{\text{use}}
   + E_{\text{reman}} + E_{\text{eol}}}{S},
 \end{align}
 where $P_{\text{sb}}$ is standby power, $Q$ the annual charging throughput and
-$\eta$ the conversion loss. Dividing by $S$ is the point: it is what allows a
-longer-lived, remanufacturable design to amortise a heavier embodied burden,
-and it is why lifetime and recycled content compete rather than simply add.
+$\eta$ the conversion loss. Dividing by $S$ captures the central mechanism of
+the model: it allows a longer-lived, remanufacturable design to amortise a
+heavier embodied burden, and it is why lifetime and recycled content compete
+rather than simply add.
 
 \paragraph{Prosperity.} Following the environmental life-cycle costing code
 of practice [23], costs are discounted at $r=5\%$ and annualised over
@@ -374,9 +377,9 @@ $C_{\text{eol}}$ is signed: closed- and open-loop routes return scrap revenue,
 landfill and incineration incur gate fees, and take-back logistics are charged
 in every case.
 
-\paragraph{People.} The social objective is the part that resists
-quantification, and it is treated as a composite of four normalised terms
-rather than a single invented metric:
+\paragraph{People.} The People objective addresses dimensions that resist
+direct quantification and is therefore treated as a composite of four
+normalised terms rather than a single invented metric:
 \begin{equation}
 f_3 = -\Big(w_1 s_{\text{repair}} + w_2 s_{\text{modular}}
   + w_3 s_{\text{labour}} + w_4 s_{\text{supply}}\Big),
@@ -394,9 +397,9 @@ meant to price in [28]. The weights are a stated preference,
 not a finding, and the scenario ensemble re-draws preference weights from a
 Dirichlet precisely so that no conclusion depends on them.
 
-\paragraph{Recyclate is not a free substitute.} An early version of this
+\paragraph{Recycled-content cost penalty.} An early version of this
 model drove recycled content to its upper bound in every non-dominated design.
-That is not a finding, it is a defect: the DEFRA closed-loop factor and the
+This behaviour was not a genuine finding but a modelling artefact: the DEFRA closed-loop factor and the
 secondary-metal price both reward recycled content without limit, so the
 variable pinned to its bound and carried no information. Two penalty terms,
 both declared assumptions, restore the trade-off that exists in practice.
@@ -455,8 +458,8 @@ augmented achievement scalarisation, with preference weights drawn from a
 Dirichlet.
 
 That definition was arrived at by discarding a more obvious one. Counting how
-often a design remains non-dominated inside the archive is nearly vacuous
-here, because the archive is \emph{already} a mutually non-dominated set:
+often a design remains non-dominated inside the archive is largely
+uninformative here, because the archive is \emph{already} a mutually non-dominated set:
 in this run that measure averaged
 76.8\% with a minimum of 18.4\%, ranking
 nothing. The top-decile criterion instead asks whether a design stays a good
@@ -505,8 +508,8 @@ which is \SI{41.34}{\kilo\gram}
 CO$_2$e per service-year at a cost of
 163.91~USD per service-year, a
 People index of 0.210 and a Material Circularity
-Indicator of 0.00, zero, correctly,
-for a design that is neither made of nor destined for recovered material.
+Indicator of 0.00, correctly reflecting a design that is neither made of nor
+destined for recovered material.
 
 Materials contribute
 \SI{215.2}{\kilo\gram} CO$_2$e and the use
@@ -521,11 +524,12 @@ cycle rather than by anything chosen here. At the published
 for \SI{333}{\kilo\watt\hour} annually against
 \SI{8.8}{\kilo\watt\hour} of standby: standby is 2.6\,\% of
 the use phase, not the lever it would be on a domestic wallbox sitting idle.
-Conversion efficiency is where the carbon is, and the optimiser finds this
-without being told.
+Conversion efficiency, not standby draw, is therefore the dominant contributor
+to use-phase carbon, a pattern the optimiser identifies without being
+explicitly directed toward it.
 
 \FloatBarrier
-\subsection{Does the inventory hold up? A check against the published LCA}
+\subsection{Comparison with the Published Life-Cycle Assessment}
 \label{sec:validation}
 
 The mass basis of this model is cited, but the emission factors are not the
@@ -621,9 +625,10 @@ unique non-dominated designs & 359 \\
 
 Seed-to-seed hypervolume varies by 0.42\%, which is
 comparable to
-the sampling error of the estimator itself: the front is stable, not a lucky
-draw. Equal-budget random search reaches 93.2\% of the same
-hypervolume. That gap is the honest measure of what the algorithm contributes,
+the sampling error of the estimator itself, indicating a stable front rather
+than an artefact of stochastic sampling. Equal-budget random search reaches
+93.2\% of the same
+hypervolume. That gap quantifies the algorithm's specific contribution,
 and it is worth reading in both directions: the problem is not so rugged
 that search is the hard part; the hard part is the model and the data.
 
@@ -652,10 +657,10 @@ baseline is not a trade-off, it is simply dominated.}
 
 Design \#344 is one concrete instance: 100\% recycled polymer, 100\% recycled steel, a 15-year design life with 3 remanufacture cycles, snap-fit/bonded/screwed joints and a 0.3~W standby class. Against the linear baseline it cuts carbon per service-year by 62.6\% and cost per service-year by 16.6\%, while raising the People index by 200\%. It is a top-decile answer in 4\% of the future~$\times$~preference draws.
 
-This is the claim the position statement calls cost-prohibitive, tested rather
-than asserted, and the mechanism is not mysterious: circularity in this
-product buys its own capital premium back through amortisation. A longer,
-remanufacturable life spreads the embodied burden over more service-years, and
+This result addresses the common concern that circular design strategies are
+necessarily cost-prohibitive: the additional capital cost of circularity in
+this product is recovered through amortisation over an extended service life.
+A longer, remanufacturable life spreads the embodied burden over more service-years, and
 the low-standby class pays for itself out of a use phase that dominates the
 inventory. The recycled-content lever contributes, but it is the smaller
 effect.
@@ -799,8 +804,9 @@ makes the end-of-life decision variable environmentally inert. Under
 
 The consequence is larger than the shift. Rank correlation between the two
 conventions across the archive is $\rho=+0.666$, and they do not agree on
-the best design. \textbf{The allocation convention, not the design space,
-selects the winner.} Any result in this report that concerns end-of-life route
+the best design. \textbf{The selection of the best-performing design was more
+sensitive to the allocation convention than to variation within the design
+space.} Any result in this report that concerns end-of-life route
 is conditional on the convention stated with it. This is the single most
 important methodological caveat in the study, and it is why the earlier
 carbon-reporting-factor version of this model (which had no substitution
@@ -864,8 +870,9 @@ Poland & 0.6363 & 219.6 & +0.987 \\
 
 The absolute result spans 12$\times$ between the cleanest and dirtiest
 European grid: larger than the effect of every design variable combined. But
-rank correlation across the archive stays above $+0.99$ everywhere. So the
-level of the answer is a statement about the grid, while the \emph{ranking} of
+rank correlation across the archive stays above $+0.99$ everywhere. The
+absolute magnitude of the Planet objective is therefore highly sensitive to
+the assumed grid, whereas the \emph{ranking} of
 designs is not. A designer can use this front anywhere in Europe; a
 communications department quoting the absolute number cannot.
 
@@ -978,13 +985,13 @@ allocation convention (cut-off vs substitution) & 2.3 \\\\
 
 Design choice ranks \#3 of 4 by how much it moves the
 result. 2 purely methodological choices move the Planet objective more than the entire design space does. That is not a reason to stop optimising the
-design -- the win-win designs this report finds are real and reproducible --
-but it is a reason to report the modelling choices with the same weight as the
+design: the designs identified here that reduce both carbon emissions and
+cost simultaneously are real and reproducible, but it is a reason to report the modelling choices with the same weight as the
 design recommendation, which is what Sections~7 and~9 of this report do rather
 than treating them as footnotes to it.
 
 \FloatBarrier
-\section{Does the optimiser earn its keep?}
+\section{NSGA-III versus NSGA-II and Random Search}
 
 Earlier versions of this work reported that random search reached a large
 fraction of NSGA-III's hypervolume, without testing whether the difference was
@@ -1050,7 +1057,7 @@ hypervolume as its price. Both are implemented, share the same variation
 operators, and can be swapped with one argument.
 
 \FloatBarrier
-\section{Where the validation gap actually comes from}
+\section{Decomposition of the Validation Gap by Material Family}
 
 Section~\ref{sec:validation} reported the aggregate agreement with the
 published study. Aggregates hide whether agreement is accuracy or cancellation,
@@ -1092,7 +1099,7 @@ predominantly Nordic one. On that evidence this report defaults to the
 the European route (\SI{4.81}{\kilo\gram} CO$_2$e/kg, hydro- and
 nuclear-heavy smelting) only as a labelled comparison.
 
-That choice happens to move the model closer to the published study's own
+This choice also results in closer agreement with the published study's own
 factor (\SI{13.06}{\kilo\gram} CO$_2$e/kg): the default gives a
 cradle-to-gate ratio of 0.66 against the published figure, where
 substituting the European alternative would give 0.34, \emph{further}
@@ -1126,7 +1133,7 @@ this size between two independently built inventories applied to the same
 product is the expected order of magnitude, not evidence of an error in
 either.
 
-\section{What this model cannot tell you}
+\section{Limitations}
 
 Several limitations of earlier versions of this work have been closed and are
 recorded here as closed rather than quietly dropped: the inventory is now
@@ -1198,8 +1205,9 @@ reconciling the aluminium route is sized against the published range of
 inter-database LCA discrepancies rather than closed further by tuning.
 \end{itemize}
 
-The central finding (that carbon-and-cost win-win designs exist and can be
-found systematically) is a statement about the \emph{structure} of the
+The central finding (that designs reducing both carbon and cost simultaneously
+exist and can be found systematically) is a statement about the
+\emph{structure} of the
 trade-off, and it survives every perturbation tested: all four impact
 categories, three allocation conventions including the EU's own CFF, six
 European grids, two independent price sources, an order-of-magnitude range in
