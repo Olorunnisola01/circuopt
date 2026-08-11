@@ -38,6 +38,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
 
 from circuopt import model as M
 from circuopt import scenarios as SC
@@ -659,6 +660,8 @@ def fig_datasets(ctx, prov):
         axes[1].plot(yrs, v / v[0], marker="o", ms=3, lw=1.1, label=commodity)
     axes[1].set_ylabel("price, indexed to first year")
     axes[1].set_xlabel("year")
+    axes[1].xaxis.set_major_locator(mticker.MaxNLocator(integer=True))
+    axes[1].xaxis.set_major_formatter(mticker.FormatStrFormatter("%d"))
     axes[1].set_title("USGS MCS 2025: the volatility the model must survive",
                       fontsize=9)
     axes[1].legend(fontsize=6.5, ncol=2)
